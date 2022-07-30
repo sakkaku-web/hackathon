@@ -1,3 +1,12 @@
 @tailwind components;
 @tailwind base;
 @tailwind utilities;
+
+$primary: rgb(251 146 60);
+
+input[type="range"]::-moz-range-progress {
+  background-color:$primary; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: rgb(198, 131, 77);
+}
