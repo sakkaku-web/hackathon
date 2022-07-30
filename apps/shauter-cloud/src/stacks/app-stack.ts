@@ -3,7 +3,7 @@ import * as cdk from '@aws-cdk/core';
 import { RetentionDays } from '@aws-cdk/aws-logs';
 import { Runtime, Code, Function } from '@aws-cdk/aws-lambda';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
+import { CorsHttpMethod, HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import {
   ShautColumn,
@@ -18,9 +18,20 @@ export class AppStack extends cdk.Stack {
 
     const api = new HttpApi(this, 'shautApi', {
       corsPreflight: {
-        allowOrigins: [
-          'http://localhost:4200',
-          'https://sakkaku-web.github.io',
+        allowOrigins: ['*'],
+        allowHeaders: [
+          'Content-Type',
+          'X-Amz-Date',
+          'Authorization',
+          'X-Api-Key',
+        ],
+        allowMethods: [
+          CorsHttpMethod.OPTIONS,
+          CorsHttpMethod.GET,
+          CorsHttpMethod.POST,
+          CorsHttpMethod.PUT,
+          CorsHttpMethod.PATCH,
+          CorsHttpMethod.DELETE,
         ],
       },
     });
