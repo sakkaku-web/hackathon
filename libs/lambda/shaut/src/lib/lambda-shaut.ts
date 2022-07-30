@@ -1,6 +1,6 @@
 import { APIGatewayEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { ShautMessage, ShautService } from '@sakkaku-web/core';
-import { BatchWriteItemCommand, DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
+import { BatchWriteItemCommand, DynamoDBClient, PutItemCommand, WriteRequest } from '@aws-sdk/client-dynamodb';
 import { ShautColumn, SHAUT_TABLE } from '@sakkaku-web/cloud-shared';
 import { addSeconds } from 'date-fns';
 
@@ -27,33 +27,24 @@ export const handler = async (
     const now = new Date();
     const expires = addSeconds(now, 30);
 
-    new BatchWriteItemCommand({
-      RequestItems: {
-        [SHAUT_TABLE]: [
-          {
-            PutRequest: {
-              Item: {
-                [ShautColumn.USER_ID]: { S: '' },
-                [ShautColumn.DATA_TYPE]: { S: `MESSAGES#${now.toISOString()}` },
-                [ShautColumn.EXPIRES]: { N: }
-              }
-            }
+    const requests: WriteRequest[] = nearbyUsers.map(userId => {
+      return {
+        PutRequest: {
+          Item: {
+            [ShautColumn.USER_ID]: { S: userId },
+            [ShautColumn.DATA_TYPE]: { S: `MESSAGES#${now.toISOString()}` },
+            [ShautColumn.EXPIRES]: { N: `${expires.getUTCMilliseconds()}` },
+            [ShautColumn.MESSAGE]: { S: message.text },
           }
-        ],
-      }
-    })
-    client.send(
-      new PutItemCommand({
-        TableName: SHAUT_TABLE,
-        Item: {
-          [ShautColumn.USER_ID]:
         }
-      })
-    );
+      };
+    });
+
+    await client.send(new BatchWriteItemCommand({ RequestItems: { [SHAUT_TABLE]: requests, } }));
 
     return {
       statusCode: 200,
-      body: JSON.stringify(message),
+      body: JSON.stringify({ message: 'successfully shauted' }),
     };
   } catch (err) {
     return {
