@@ -5,6 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "build:aws": "nx run-many --target=package --all",
+    "deploy:aws": "npm run build:aws && nx run shauter-cloud:deploy",
+    "template": "cd apps/shauter-cloud && cdk synth --no-staging > ../../template.yaml",
     "test": "nx test"
   },
   "private": true,

@@ -2,5 +2,7 @@
   "name": "lambda-shaut",
   "version": "1.0.0",
   "main": "src/app.js",
-  "dependencies": {}
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.137.0"
+  }
 }

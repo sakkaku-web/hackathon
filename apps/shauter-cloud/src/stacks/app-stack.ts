@@ -5,7 +5,10 @@ import { Runtime, Code, Function } from '@aws-cdk/aws-lambda';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { SHAUT_DEMO_TABLE, ShautColumn } from '@sakkaku-web/cloud-shared';
+import {
+  SHAUT_DEMO_TABLE,
+  ShautColumn,
+} from '../../../../libs/cloud-shared/src';
 import { join } from 'path';
 
 export class AppStack extends cdk.Stack {
@@ -32,7 +35,7 @@ export class AppStack extends cdk.Stack {
 
     const libsPath = '../../dist/libs/lambda';
 
-    const shautFn = new Function(scope, 'shaut', {
+    const shautFn = new Function(this, 'shaut', {
       runtime: Runtime.NODEJS_14_X,
       code: Code.fromAsset(join(libsPath, 'shaut')),
       handler: 'lambda-shaut.handler',
