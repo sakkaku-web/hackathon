@@ -31,14 +31,14 @@ export function App() {
 
   return (
     <div>
-      <header className="flex flex-row items-center justify-between px-4">
+      <header className="flex flex-row items-center justify-between p-4">
         <h1 className="text-2xl font-bold">Shauter</h1>
 
         <ChangeUser currentUser={id} onUserChange={updateId} />
       </header>
       <MapContainer
         center={DEFAULT_LAT_LONG}
-        zoom={13}
+        zoom={15}
         scrollWheelZoom={false}
         className="h-44"
       >

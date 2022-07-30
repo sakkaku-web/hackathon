@@ -17,6 +17,10 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
   const [radius, setRadius] = useState(5);
   const [showModal, setShowModal] = useState(false);
 
+  function reset() {
+    setMessage('');
+  }
+
   function onClose() {
     setShowModal(false);
   }
@@ -37,6 +41,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
         });
         onShauted();
         onClose();
+        reset();
       })
       .catch((err) => {
         console.log(err);

@@ -8,7 +8,7 @@ interface ShautItemProps {
 
 function ShautItem({ item }: ShautItemProps) {
   return (
-    <div className="border-t-2 border-gray-500 p-2">
+    <div className="border-b border-gray-500 p-2">
       <div className="grid grid-cols-6">
         <div className="grid justify-center">
           <DefaultProfilePicture className="h-10 w-10" />
