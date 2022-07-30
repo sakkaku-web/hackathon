@@ -6,9 +6,10 @@ import { Button } from './Button';
 
 interface ShautOutProps {
   userId: string;
+  onShauted: () => void;
 }
 
-function ShoutOut({ userId }: ShautOutProps) {
+function ShoutOut({ userId, onShauted }: ShautOutProps) {
   const [text, setMessage] = useState('');
   const [radius, setRadius] = useState(5);
   function getValue(e: React.ChangeEvent<HTMLInputElement>) {
@@ -27,6 +28,7 @@ function ShoutOut({ userId }: ShautOutProps) {
         }
       )
       .then((res) => console.log(res))
+      .then(() => onShauted())
       .catch((err) => console.log(err));
   }
 
