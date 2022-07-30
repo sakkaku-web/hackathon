@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { environment } from '../../environments/environment';
 import LabelComponent from '../helper-components/LabelComponent';
 
-function ShoutOut() {
+interface ShautOutProps {
+  userId: string;
+}
+
+function ShoutOut({ userId }: ShautOutProps) {
   const [message, setMessage] = useState('');
-  const [id, setId] = useState('0');
   const [radius, setRadius] = useState(5);
   function getValue(e: React.ChangeEvent<HTMLInputElement>) {
     return setRadius(parseInt(e.target.value));
@@ -13,7 +16,7 @@ function ShoutOut() {
 
   function submitShautOut() {
     axios
-      .post(`${environment.url}/shaut`, { message, id, radius })
+      .post(`${environment.url}/shaut`, { message, userId, radius })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }

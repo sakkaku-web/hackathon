@@ -3,8 +3,11 @@ import styles from './app.module.scss';
 import { LatLngExpression } from 'leaflet';
 import { MapContainer } from 'react-leaflet';
 import ShoutOut from './components/ShautOut';
+import ShautItems from './components/ShautItems';
+import { useState } from 'react';
 
 export function App() {
+  const [id, setId] = useState('0');
   const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
   return (
     <div>
@@ -17,7 +20,8 @@ export function App() {
       >
         <OpenMap />
       </MapContainer>
-      <ShoutOut />
+      <ShoutOut userId={id} />
+      <ShautItems userId={id}></ShautItems>
     </div>
   );
 }
