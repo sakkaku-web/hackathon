@@ -21,7 +21,7 @@ export function Modal({
 
   return (
     <div
-      className={`fixed inset-0 backdrop-blur-md transition-transform ${translate}`}
+      className={`fixed inset-0 backdrop-blur-md transition-transform duration-300 ${translate}`}
       style={{ zIndex: 999999 }}
     >
       <div className="flex flex-row items-center justify-between border-b bg-white p-2">
