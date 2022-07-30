@@ -1,12 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import OpenMap from './components/OpenMap';
 import styles from './app.module.scss';
-import NxWelcome from './nx-welcome';
+import { MapContainer } from 'react-leaflet';
 
 export function App() {
   return (
     <>
       <h1 className="font-bold text-2xl">Hello World</h1>
-      <div />
+      <MapContainer
+        center={[48.208492, 16.373755]}
+        zoom={13}
+        scrollWheelZoom={false}
+        className="h-44"
+      >
+        <OpenMap />
+      </MapContainer>
     </>
   );
 }
