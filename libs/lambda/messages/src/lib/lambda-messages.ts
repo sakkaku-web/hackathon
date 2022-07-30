@@ -20,7 +20,8 @@ export const handler = async ({ pathParameters }: APIGatewayEvent,): Promise<API
       ExpressionAttributeValues: {
         ':userId': { S: pathParameters.userId },
         ':type': { S: 'MESSAGES#' },
-      }
+      },
+      ScanIndexForward: false,
     })
     const res = await client.send(query);
 
