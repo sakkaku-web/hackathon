@@ -1,4 +1,3 @@
-/* eslint-disable-next-line */
 export interface ChangeUserProps {
   currentUser: string;
   onUserChange: (id: string) => void;
