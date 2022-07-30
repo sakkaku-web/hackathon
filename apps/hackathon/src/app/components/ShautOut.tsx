@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { environment } from '../../environments/environment';
 import LabelComponent from '../helper-components/LabelComponent';
+import { Button } from './Button';
 
 interface ShautOutProps {
   userId: string;
@@ -59,13 +60,7 @@ function ShoutOut({ userId }: ShautOutProps) {
         />
         <p>Radius: {radius} km</p>
       </div>
-      <button
-        type="submit"
-        onClick={() => submitShautOut()}
-        className="rounded-full bg-green-600 px-5 py-2 text-center font-semibold text-white"
-      >
-        Shout Out
-      </button>
+      <Button onClick={() => submitShautOut()}>Shout Out</Button>
     </div>
   );
 }
