@@ -3,5 +3,5 @@
 
 export const environment = {
   production: false,
-  url: 'localhost:4200',
+  url: 'https://ycpuzidt3m.execute-api.eu-central-1.amazonaws.com',
 };
