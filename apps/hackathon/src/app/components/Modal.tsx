@@ -17,22 +17,19 @@ export function Modal({
   onSubmit,
   onClose,
 }: ModalProps) {
+  const translate = open ? 'translate-y-0' : 'translate-y-full';
+
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    <>
-      {open && (
-        <div
-          className="absolute inset-0 backdrop-blur-md"
-          style={{ zIndex: 999999 }}
-        >
-          <div className="flex flex-row items-center justify-between border-b bg-white p-2">
-            <CloseIcon className="h-8 w-8" onClick={() => onClose()} />
-            <Button onClick={() => onSubmit()}>{buttonText}</Button>
-          </div>
-          <div className="p-2">{children}</div>
-        </div>
-      )}
-    </>
+    <div
+      className={`fixed inset-0 backdrop-blur-md transition-transform ${translate}`}
+      style={{ zIndex: 999999 }}
+    >
+      <div className="flex flex-row items-center justify-between border-b bg-white p-2">
+        <CloseIcon className="h-8 w-8" onClick={() => onClose()} />
+        <Button onClick={() => onSubmit()}>{buttonText}</Button>
+      </div>
+      <div className="p-2">{children}</div>
+    </div>
   );
 }
 
