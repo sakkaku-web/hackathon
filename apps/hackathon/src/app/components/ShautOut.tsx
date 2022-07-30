@@ -69,7 +69,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
           <div className="mb-2 flex flex-col gap-2">
             <LabelComponent htmlFor="message">Your Message</LabelComponent>
             <textarea
-              className="rounded-md border border-black p-3 pt-2"
+              className="rounded-md border border-black p-3 pt-2 outline-2 outline-orange-400 focus:outline"
               name="text"
               placeholder="What would you like to shout out?"
               id="message"
