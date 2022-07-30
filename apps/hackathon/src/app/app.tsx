@@ -5,6 +5,7 @@ import ShoutOut from './components/ShautOut';
 import ShautItems from './components/ShautItems';
 import { useState } from 'react';
 import { ChangeUser } from './components/ChangeUser';
+import { ReactComponent as Megaphone } from '../assets/megaphone.svg';
 
 const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
 
@@ -27,6 +28,9 @@ export function App() {
       </MapContainer>
       <ShoutOut userId={id} />
       <ShautItems userId={id}></ShautItems>
+      <button className="fixed bottom-10 right-4 rounded-full bg-orange-400 p-5">
+        <Megaphone className="h-5 w-5 fill-white" />
+      </button>
     </div>
   );
 }
