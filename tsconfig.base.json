@@ -17,6 +17,7 @@
     "paths": {
       "@sakkaku-web/cloud-shared": ["libs/cloud-shared/src/index.ts"],
       "@sakkaku-web/core": ["libs/core/src/index.ts"],
+      "@sakkaku-web/lambda/messages": ["libs/lambda/messages/src/index.ts"],
       "@sakkaku-web/lambda/shaut": ["libs/lambda/shaut/src/index.ts"]
     }
   },

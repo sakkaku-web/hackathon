@@ -9,14 +9,20 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/cloud-shared/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/cloud-shared/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/cloud-shared"],
+          "outputs": [
+            "coverage/libs/cloud-shared"
+          ],
           "options": {
             "jestConfig": "libs/cloud-shared/jest.config.ts",
             "passWithNoTests": true
@@ -32,14 +38,20 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/core/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/core/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/core"],
+          "outputs": [
+            "coverage/libs/core"
+          ],
           "options": {
             "jestConfig": "libs/core/jest.config.ts",
             "passWithNoTests": true
@@ -50,6 +62,43 @@
     },
     "hackathon": "apps/hackathon",
     "hackathon-e2e": "apps/hackathon-e2e",
+    "lambda-messages": {
+      "root": "libs/lambda/messages",
+      "sourceRoot": "libs/lambda/messages/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/lambda/messages/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/lambda/messages"
+          ],
+          "options": {
+            "jestConfig": "libs/lambda/messages/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "package": {
+          "executor": "@myin/aws-cdk:package",
+          "options": {
+            "entryFile": "libs/lambda/messages/src/index.ts",
+            "tsConfig": "libs/lambda/messages/tsconfig.lib.json",
+            "outputPath": "dist/libs/lambda/messages"
+          }
+        }
+      },
+      "tags": []
+    },
     "lambda-shaut": {
       "root": "libs/lambda/shaut",
       "sourceRoot": "libs/lambda/shaut/src",
@@ -57,14 +106,20 @@
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["libs/lambda/shaut/**/*.ts"]
+            "lintFilePatterns": [
+              "libs/lambda/shaut/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/lambda/shaut"],
+          "outputs": [
+            "coverage/libs/lambda/shaut"
+          ],
           "options": {
             "jestConfig": "libs/lambda/shaut/jest.config.ts",
             "passWithNoTests": true
@@ -110,7 +165,9 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/shauter-cloud"],
+          "outputs": [
+            "coverage/apps/shauter-cloud"
+          ],
           "options": {
             "jestConfig": "apps/shauter-cloud/jest.config.ts",
             "passWithNoTests": true
