@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { ReactComponent as CloseIcon } from '../../assets/x.svg';
+import SpinnerComponent from '../helper-components/SpinnerComponent';
 import { Button } from './Button';
 
 /* eslint-disable-next-line */
@@ -8,6 +9,7 @@ export interface ModalProps extends PropsWithChildren {
   buttonText: string;
   onClose: () => void;
   onSubmit: () => void;
+  loading: boolean;
 }
 
 export function Modal({
@@ -16,6 +18,7 @@ export function Modal({
   children,
   onSubmit,
   onClose,
+  loading,
 }: ModalProps) {
   const translate = open ? 'translate-y-0' : 'translate-y-full';
 
@@ -30,7 +33,14 @@ export function Modal({
           className="h-8 w-8 cursor-pointer"
           onClick={() => onClose()}
         />
-        <Button onClick={() => onSubmit()}>{buttonText}</Button>
+        <Button
+          disabled={loading}
+          onClick={() => onSubmit()}
+          className="flex flex-row items-center gap-2"
+        >
+          {loading && <SpinnerComponent></SpinnerComponent>}
+          <span> {buttonText}</span>
+        </Button>
       </div>
       <div className="p-2">{children}</div>
     </div>

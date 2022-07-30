@@ -16,6 +16,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
   const [text, setMessage] = useState('');
   const [radius, setRadius] = useState(5);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function reset() {
     setMessage('');
@@ -26,6 +27,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
   }
 
   function submitShautOut() {
+    setLoading(true);
     axios
       .post(`${environment.url}/shaut`, { text, userId, radius })
       .then((res) => {
@@ -54,7 +56,8 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
           draggable: true,
           progress: undefined,
         });
-      });
+      })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -64,6 +67,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
         buttonText="Shout Out"
         onClose={onClose}
         onSubmit={() => submitShautOut()}
+        loading={loading}
       >
         <div className="m-4 rounded-md border-2 bg-white p-4">
           <div className="mb-2 flex flex-col gap-2">
