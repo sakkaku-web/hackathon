@@ -1,7 +1,5 @@
-import axios from 'axios';
-import { environment } from '../../environments/environment';
 import { ShautMessage } from '@sakkaku-web/core';
-import { format, formatDuration } from 'date-fns';
+import { format } from 'date-fns';
 import { ReactComponent as DefaultProfilePicture } from '../../assets/person-circle.svg';
 
 interface ShautItemProps {
@@ -17,7 +15,7 @@ function ShautItem({ item }: ShautItemProps) {
         </div>
         <div className="col-start-2 col-end-7">
           <p className="text-lg font-bold leading-none">{item.user}</p>
-          <p className="leading-[1.2]">{item.text}</p>
+          <p className="break-all leading-[1.2]">{item.text}</p>
           <div className="flex justify-end">
             <p className="text-right text-xs text-gray-500">
               {format(new Date(item.time), 'dd.M.yyyy HH:mm')}
