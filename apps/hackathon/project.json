@@ -1,0 +1,83 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/hackathon/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/hackathon",
+        "index": "apps/hackathon/src/index.html",
+        "baseHref": "/",
+        "main": "apps/hackathon/src/main.tsx",
+        "polyfills": "apps/hackathon/src/polyfills.ts",
+        "tsConfig": "apps/hackathon/tsconfig.app.json",
+        "assets": [
+          "apps/hackathon/src/favicon.ico",
+          "apps/hackathon/src/assets"
+        ],
+        "styles": ["apps/hackathon/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/hackathon/src/environments/environment.ts",
+              "with": "apps/hackathon/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "hackathon:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "hackathon:build:development"
+        },
+        "production": {
+          "buildTarget": "hackathon:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/hackathon/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/hackathon"],
+      "options": {
+        "jestConfig": "apps/hackathon/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
