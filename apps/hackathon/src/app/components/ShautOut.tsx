@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { environment } from '../../environments/environment';
+import LabelComponent from '../helper-components/LabelComponent';
 
 function ShoutOut() {
   const [message, setMessage] = useState('');
@@ -18,11 +19,11 @@ function ShoutOut() {
   }
 
   return (
-    <div>
-      <div>
-        <label htmlFor="message">Your message</label>
+    <div className="m-4 rounded-md border-2 border-black p-4">
+      <div className="mb-2 flex flex-col">
+        <LabelComponent htmlFor="message">Your Message</LabelComponent>
         <textarea
-          className="rounded-md border border-black"
+          className="rounded-md border border-black p-3 pt-2"
           name="message"
           placeholder="What would you like to shout out?"
           id="message"
@@ -31,8 +32,8 @@ function ShoutOut() {
           onChange={(e) => setMessage(e.target.value)}
         ></textarea>
       </div>
-      <div>
-        <label htmlFor="slider">How far?</label>
+      <div className="mb-2 flex flex-col">
+        <LabelComponent htmlFor="slider">How far?</LabelComponent>
         <input
           type="range"
           onChange={(e) => {

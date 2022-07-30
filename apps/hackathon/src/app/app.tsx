@@ -7,8 +7,8 @@ import ShoutOut from './components/ShautOut';
 export function App() {
   const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
   return (
-    <>
-      <h1 className="font-bold text-2xl">Hello World</h1>
+    <div>
+      <h1 className="text-2xl font-bold">Shouter</h1>
       <MapContainer
         center={DEFAULT_LAT_LONG}
         zoom={13}
@@ -18,7 +18,7 @@ export function App() {
         <OpenMap />
       </MapContainer>
       <ShoutOut />
-    </>
+    </div>
   );
 }
 
