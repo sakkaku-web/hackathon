@@ -24,7 +24,6 @@ export const handler = async ({ pathParameters }: APIGatewayEvent,): Promise<API
     })
     const res = await client.send(query);
 
-    console.log(res.Items);
     const messages: ShautMessage[] = res.Items?.map(item => ({
       text: item[ShautColumn.MESSAGE].S || '',
       user: item[ShautColumn.FROM_USER].S || '',
