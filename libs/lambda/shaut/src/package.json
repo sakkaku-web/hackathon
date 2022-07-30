@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/app.js",
   "dependencies": {
+    "date-fns": "^2.29.1",
     "@aws-sdk/client-dynamodb": "^3.137.0"
   }
 }

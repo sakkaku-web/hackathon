@@ -6,10 +6,11 @@ import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
 import {
-  SHAUT_DEMO_TABLE,
   ShautColumn,
+  SHAUT_TABLE,
 } from '../../../../libs/cloud-shared/src';
 import { join } from 'path';
+import { RemovalPolicy } from '@aws-cdk/core';
 
 export class AppStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -25,12 +26,17 @@ export class AppStack extends cdk.Stack {
     });
 
     const table = new Table(this, 'shauter-demo', {
-      tableName: SHAUT_DEMO_TABLE,
+      tableName: SHAUT_TABLE,
       partitionKey: {
         name: ShautColumn.USER_ID,
         type: AttributeType.STRING,
       },
+      sortKey: {
+        name: ShautColumn.DATA_TYPE,
+        type: AttributeType.STRING,
+      },
       timeToLiveAttribute: ShautColumn.EXPIRES,
+      removalPolicy: RemovalPolicy.DESTROY,
     });
 
     const libsPath = '../../dist/libs/lambda';
