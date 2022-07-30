@@ -29,6 +29,7 @@ export const handler = async ({ body }: APIGatewayEvent,): Promise<APIGatewayPro
       message.userId,
       message.radius
     );
+    nearbyUsers.push(message.userId);
 
     if (nearbyUsers.length > 0) {
       const now = new Date();
