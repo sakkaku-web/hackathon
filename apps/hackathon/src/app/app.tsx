@@ -9,12 +9,14 @@ import axios from 'axios';
 import { environment } from '../environments/environment';
 import { ShautMessage } from '@sakkaku-web/core';
 import ShautItem from './components/ShautItem';
+import ShautOut from './components/ShautOut';
 
 const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
 
 export function App() {
   const [id, setId] = useState(localStorage.getItem('shautDemoUser') || '0');
   const [messages, setMessages] = useState<ShautMessage[]>([]);
+  const [showShautModal, setShowShautModal] = useState(false);
 
   const reloadMessages = () => {
     axios
@@ -44,7 +46,6 @@ export function App() {
       >
         <OpenMap />
       </MapContainer>
-      <ShoutOut userId={id} onShauted={() => reloadMessages()} />
 
       {messages.map((item) => (
         <div key={item.time + item.user}>
@@ -52,7 +53,18 @@ export function App() {
         </div>
       ))}
 
-      <button className="fixed bottom-10 right-4 rounded-full bg-orange-400 p-5">
+      {showShautModal && (
+        <ShautOut
+          userId={id}
+          onShauted={() => reloadMessages()}
+          onClose={() => setShowShautModal(false)}
+        ></ShautOut>
+      )}
+
+      <button
+        className="fixed bottom-10 right-4 rounded-full bg-orange-400 p-5"
+        onClick={() => setShowShautModal(true)}
+      >
         <Megaphone className="h-5 w-5 fill-white" />
       </button>
     </div>
