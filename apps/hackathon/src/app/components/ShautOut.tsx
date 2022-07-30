@@ -8,7 +8,7 @@ interface ShautOutProps {
 }
 
 function ShoutOut({ userId }: ShautOutProps) {
-  const [message, setMessage] = useState('');
+  const [text, setMessage] = useState('');
   const [radius, setRadius] = useState(5);
   function getValue(e: React.ChangeEvent<HTMLInputElement>) {
     return setRadius(parseInt(e.target.value));
@@ -16,7 +16,15 @@ function ShoutOut({ userId }: ShautOutProps) {
 
   function submitShautOut() {
     axios
-      .post(`${environment.url}/shaut`, { message, userId, radius })
+      .post(
+        `${environment.url}/shaut`,
+        { text, userId, radius },
+        {
+          headers: {
+            'content-type': 'application/json',
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
@@ -27,7 +35,7 @@ function ShoutOut({ userId }: ShautOutProps) {
         <LabelComponent htmlFor="message">Your Message</LabelComponent>
         <textarea
           className="rounded-md border border-black p-3 pt-2"
-          name="message"
+          name="text"
           placeholder="What would you like to shout out?"
           id="message"
           cols={40}
@@ -52,7 +60,8 @@ function ShoutOut({ userId }: ShautOutProps) {
         <p>Radius: {radius} km</p>
       </div>
       <button
-        onClick={() => submitShautOut}
+        type="submit"
+        onClick={() => submitShautOut()}
         className="rounded-full bg-green-600 px-5 py-2 text-center font-semibold text-white"
       >
         Shout Out
