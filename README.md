@@ -6,6 +6,6 @@ Radius:
 
 < 2 -> empty
 
-< 5 -> user 2
+< 5 -> the next user
 
-else -> user 2, user 3
+else -> all other users

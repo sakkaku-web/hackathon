@@ -1,9 +1,6 @@
 import { Coordinate, ShautUser } from "./core";
 
-export const DEMO_USER_1 = '0';
-export const DEMO_USER_2 = '1';
-export const DEMO_USER_3 = '2';
-
+const ids = ['0', '1', '2']
 const names = ['Max', 'Daniel', 'Florian'];
 const coordinates: Coordinate[] = [
   { lat: 48.208492, long: 16.373755 },
@@ -12,8 +9,12 @@ const coordinates: Coordinate[] = [
 ];
 
 export class ShautService {
-  async getUserData(userId: string): Promise<ShautUser> {
+  async getUserData(userId: string): Promise<ShautUser | null> {
     const idx = parseInt(userId);
+    if (isNaN(idx) || idx < 0 || idx >= ids.length) {
+      return null;
+    }
+
     return {
       id: userId,
       name: names[idx] || 'Unknown',
@@ -22,14 +23,18 @@ export class ShautService {
   }
 
   async getNearbyUser(userId: string, radius: number): Promise<string[]> {
-    if (radius < 2) {
+    if (radius <= 1) {
       return [];
     }
 
-    if (radius < 5) {
-      return [DEMO_USER_2];
+    const index = parseInt(userId);
+    if (radius <= 5) {
+      if (index === ids.length - 1) {
+        return [ids[0]];
+      }
+      return [ids[index + 1]];
     }
 
-    return [DEMO_USER_2, DEMO_USER_3];
+    return ids.filter((v, i) => i !== index);
   }
 }

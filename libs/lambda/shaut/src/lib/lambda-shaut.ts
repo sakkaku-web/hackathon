@@ -16,9 +16,15 @@ export const handler = async ({ body }: APIGatewayEvent,): Promise<APIGatewayPro
   }
 
   try {
-    console.log(body);
     const message: ShautMessageRequest = JSON.parse(body);
     const user = await shautService.getUserData(message.userId);
+    if (!user) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ message: 'invalid user id' }),
+      };
+    }
+
     const nearbyUsers = await shautService.getNearbyUser(
       message.userId,
       message.radius
@@ -34,7 +40,7 @@ export const handler = async ({ body }: APIGatewayEvent,): Promise<APIGatewayPro
             Item: {
               [ShautColumn.USER_ID]: { S: userId },
               [ShautColumn.DATA_TYPE]: { S: `MESSAGES#${now.toISOString()}` },
-              [ShautColumn.EXPIRES]: { N: `${expires.getTime()}` },
+              [ShautColumn.EXPIRES]: { N: `${expires.getTime() / 1000}` },
               [ShautColumn.MESSAGE]: { S: message.text },
               [ShautColumn.FROM_USER]: { S: user.name },
               [ShautColumn.LAT]: { N: `${user.coordinate.lat}` },
