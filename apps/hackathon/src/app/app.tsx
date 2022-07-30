@@ -9,13 +9,19 @@ import { ChangeUser } from './components/ChangeUser';
 const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
 
 export function App() {
-  const [id, setId] = useState('0');
+  const [id, setId] = useState(localStorage.getItem('shautDemoUser') || '0');
+
+  const updateId = (id: string) => {
+    setId(id);
+    localStorage.setItem('shautDemoUser', id);
+  };
+
   return (
     <div>
       <header className="flex flex-row items-center justify-between px-4">
         <h1 className="text-2xl font-bold">Shauter</h1>
 
-        <ChangeUser currentUser={id} onUserChange={(i) => setId(i)} />
+        <ChangeUser currentUser={id} onUserChange={updateId} />
       </header>
       <MapContainer
         center={DEFAULT_LAT_LONG}
