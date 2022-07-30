@@ -31,8 +31,8 @@ function ShoutOut({ userId, onShauted, onClose }: ShautOutProps) {
       onClose={onClose}
       onSubmit={() => submitShautOut()}
     >
-      <div className="m-4 rounded-md border-2 border-black p-4">
-        <div className="mb-2 flex flex-col">
+      <div className="m-4 rounded-md border-2 bg-white p-4">
+        <div className="mb-2 flex flex-col gap-2">
           <LabelComponent htmlFor="message">Your Message</LabelComponent>
           <textarea
             className="rounded-md border border-black p-3 pt-2"
@@ -44,7 +44,7 @@ function ShoutOut({ userId, onShauted, onClose }: ShautOutProps) {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
         </div>
-        <div className="mb-2 flex flex-col">
+        <div className="mb-2 flex flex-col gap-2">
           <LabelComponent htmlFor="slider">How far?</LabelComponent>
           <input
             type="range"

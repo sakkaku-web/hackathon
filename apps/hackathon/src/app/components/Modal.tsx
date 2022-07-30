@@ -11,8 +11,11 @@ export interface ModalProps extends PropsWithChildren {
 
 export function Modal({ buttonText, children, onSubmit, onClose }: ModalProps) {
   return (
-    <div className="absolute inset-0 bg-white" style={{ zIndex: 999999 }}>
-      <div className="flex flex-row items-center justify-between border-b p-2">
+    <div
+      className="absolute inset-0 backdrop-blur-md"
+      style={{ zIndex: 999999 }}
+    >
+      <div className="flex flex-row items-center justify-between border-b bg-white p-2">
         <CloseIcon className="h-8 w-8" onClick={() => onClose()} />
         <Button onClick={() => onSubmit()}>{buttonText}</Button>
       </div>
