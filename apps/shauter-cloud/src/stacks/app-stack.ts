@@ -47,12 +47,26 @@ export class AppStack extends cdk.Stack {
       handler: 'lambda-shaut.handler',
       logRetention: RetentionDays.ONE_MONTH,
     });
-    table.grantReadData(shautFn);
+    table.grantReadWriteData(shautFn);
 
     api.addRoutes({
       path: '/shaut',
       methods: [HttpMethod.POST],
       integration: new HttpLambdaIntegration('postShaut', shautFn),
+    });
+
+    const messageFn = new Function(this, 'messages', {
+      runtime: Runtime.NODEJS_14_X,
+      code: Code.fromAsset(join(libsPath, 'messages')),
+      handler: 'lambda-messages.handler',
+      logRetention: RetentionDays.ONE_MONTH,
+    });
+    table.grantReadData(messageFn);
+
+    api.addRoutes({
+      path: '/messages/{userId}',
+      methods: [HttpMethod.GET],
+      integration: new HttpLambdaIntegration('getMessages', messageFn,),
     });
   }
 }
