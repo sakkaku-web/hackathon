@@ -25,7 +25,10 @@ export function Modal({
       style={{ zIndex: 999999 }}
     >
       <div className="flex flex-row items-center justify-between border-b bg-white p-2">
-        <CloseIcon className="h-8 w-8" onClick={() => onClose()} />
+        <CloseIcon
+          className="h-8 w-8 cursor-pointer"
+          onClick={() => onClose()}
+        />
         <Button onClick={() => onSubmit()}>{buttonText}</Button>
       </div>
       <div className="p-2">{children}</div>
