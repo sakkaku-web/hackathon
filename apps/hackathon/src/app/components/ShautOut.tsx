@@ -79,6 +79,7 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
               id="message"
               cols={40}
               rows={5}
+              value={text}
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>

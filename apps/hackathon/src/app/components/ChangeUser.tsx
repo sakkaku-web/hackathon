@@ -11,7 +11,7 @@ export function ChangeUser({ currentUser, onUserChange }: ChangeUserProps) {
       {users.map((id) => (
         <button
           key={id}
-          className="disabled:underline"
+          className="w-5 disabled:underline"
           disabled={id === currentUser}
           onClick={() => onUserChange(id)}
         >

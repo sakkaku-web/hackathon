@@ -45,6 +45,12 @@ export function App() {
         <OpenMap />
       </MapContainer>
 
+      {messages.length === 0 && (
+        <div className="p-4 text-center font-semibold text-gray-500">
+          No messages nearby
+        </div>
+      )}
+
       {messages.map((item) => (
         <div key={item.time + item.user}>
           <ShautItem item={item} />
