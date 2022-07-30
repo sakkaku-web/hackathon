@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -19,7 +21,9 @@
           "apps/hackathon/src/favicon.ico",
           "apps/hackathon/src/assets"
         ],
-        "styles": ["apps/hackathon/src/styles.scss"],
+        "styles": [
+          "apps/hackathon/src/styles.scss"
+        ],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
       },
@@ -65,14 +69,20 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/hackathon/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/hackathon/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/hackathon"],
+      "outputs": [
+        "coverage/apps/hackathon"
+      ],
       "options": {
         "jestConfig": "apps/hackathon/jest.config.ts",
         "passWithNoTests": true

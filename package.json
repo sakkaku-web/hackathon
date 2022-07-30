@@ -18,6 +18,15 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@aws-cdk/assert": "^1.46.0",
+    "@aws-cdk/aws-apigatewayv2": "^1.166.1",
+    "@aws-cdk/aws-apigatewayv2-integrations": "^1.166.1",
+    "@aws-cdk/aws-dynamodb": "^1.166.1",
+    "@aws-cdk/aws-lambda": "^1.166.1",
+    "@aws-cdk/aws-lambda-nodejs": "^1.46.0",
+    "@aws-cdk/core": "^1.46.0",
+    "@aws-sdk/client-dynamodb": "^3.137.0",
+    "@myin/aws-cdk": "^0.0.11",
     "@nrwl/cli": "14.5.1",
     "@nrwl/cypress": "14.5.1",
     "@nrwl/eslint-plugin-nx": "14.5.1",
@@ -27,6 +36,7 @@
     "@nrwl/web": "14.5.1",
     "@nrwl/workspace": "14.5.1",
     "@testing-library/react": "13.3.0",
+    "@types/aws-lambda": "^8.10.101",
     "@types/jest": "27.4.1",
     "@types/leaflet": "^1.7.11",
     "@types/node": "16.11.7",

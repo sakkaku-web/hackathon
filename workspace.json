@@ -2,7 +2,121 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "cloud-shared": {
+      "root": "libs/cloud-shared",
+      "sourceRoot": "libs/cloud-shared/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/cloud-shared/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/cloud-shared"],
+          "options": {
+            "jestConfig": "libs/cloud-shared/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/core/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core"],
+          "options": {
+            "jestConfig": "libs/core/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "hackathon": "apps/hackathon",
-    "hackathon-e2e": "apps/hackathon-e2e"
+    "hackathon-e2e": "apps/hackathon-e2e",
+    "lambda-shaut": {
+      "root": "libs/lambda/shaut",
+      "sourceRoot": "libs/lambda/shaut/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/lambda/shaut/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lambda/shaut"],
+          "options": {
+            "jestConfig": "libs/lambda/shaut/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "package": {
+          "executor": "@myin/aws-cdk:package",
+          "options": {
+            "entryFile": "libs/lambda/shaut/src/index.ts",
+            "tsConfig": "libs/lambda/shaut/tsconfig.lib.json",
+            "outputPath": "dist/libs/lambda/shaut"
+          }
+        }
+      },
+      "tags": []
+    },
+    "shauter-cloud": {
+      "projectType": "application",
+      "root": "apps/shauter-cloud",
+      "sourceRoot": "apps/shauter-cloud/src",
+      "targets": {
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "cwd": "apps/shauter-cloud",
+            "commands": [
+              {
+                "command": "if [ \"{args.stack}\" = \"undefined\" ]; then cdk deploy --require-approval=never; else cdk deploy --require-approval=never {args.stack}; fi"
+              }
+            ]
+          }
+        },
+        "destroy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "cwd": "apps/shauter-cloud",
+            "commands": [
+              {
+                "command": "if [ \"{args.stack}\" = \"undefined\" ]; then cdk destroy -f; else cdk destroy -f {args.stack}; fi"
+              }
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/shauter-cloud"],
+          "options": {
+            "jestConfig": "apps/shauter-cloud/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
   }
 }
