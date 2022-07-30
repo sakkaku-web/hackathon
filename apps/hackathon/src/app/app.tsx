@@ -5,7 +5,7 @@ import NxWelcome from './nx-welcome';
 export function App() {
   return (
     <>
-      <NxWelcome title="hackathon" />
+      <h1 className="font-bold text-2xl">Hello World</h1>
       <div />
     </>
   );
