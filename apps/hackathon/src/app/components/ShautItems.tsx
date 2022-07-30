@@ -19,7 +19,9 @@ function ShautItemContainer({ userId }: ShautItemContainer) {
   return (
     <div>
       {items.map((item) => (
-        <ShautItem item={item} />
+        <div key={item.time + item.user}>
+          <ShautItem item={item} />
+        </div>
       ))}
     </div>
   );
