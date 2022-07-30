@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { environment } from '../../environments/environment';
 import LabelComponent from '../helper-components/LabelComponent';
 import { Modal } from './Modal';
+import { Button } from './Button';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ShautOutProps {
   userId: string;
@@ -17,12 +20,32 @@ function ShoutOut({ userId, onShauted, onClose }: ShautOutProps) {
   function submitShautOut() {
     axios
       .post(`${environment.url}/shaut`, { text, userId, radius })
-      .then((res) => console.log(res))
-      .then(() => {
+      .then((res) => {
+        console.log(res);
+        toast.success('Shout out successfully created', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         onShauted();
         onClose();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        toast.error('Oops something went wrong', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   }
 
   return (

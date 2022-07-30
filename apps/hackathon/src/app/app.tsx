@@ -1,7 +1,6 @@
 import OpenMap from './components/OpenMap';
 import { LatLngExpression } from 'leaflet';
 import { MapContainer } from 'react-leaflet';
-import ShoutOut from './components/ShautOut';
 import { useEffect, useState } from 'react';
 import { ChangeUser } from './components/ChangeUser';
 import { ReactComponent as Megaphone } from '../assets/megaphone.svg';
@@ -10,6 +9,7 @@ import { environment } from '../environments/environment';
 import { ShautMessage } from '@sakkaku-web/core';
 import ShautItem from './components/ShautItem';
 import ShautOut from './components/ShautOut';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const DEFAULT_LAT_LONG: LatLngExpression | undefined = [48.208492, 16.373755];
 
@@ -67,6 +67,7 @@ export function App() {
       >
         <Megaphone className="h-5 w-5 fill-white" />
       </button>
+      <ToastContainer transition={Slide} />
     </div>
   );
 }
