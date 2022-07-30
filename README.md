@@ -4,8 +4,8 @@ Current expiration time: 30s
 
 Radius:
 
-< 2 -> empty
+<= 1 -> empty
 
-< 5 -> the next user
+<= 5 -> the next user
 
 else -> all other users
