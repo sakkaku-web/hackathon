@@ -44,9 +44,9 @@ function ShautItem({ item }: ShautItemProps) {
         <div className="grid justify-center">
           <DefaultProfilePicture className="h-10 w-10" />
         </div>
-        <div className="col-start-2 col-end-7">
+        <div className="col-start-2 col-end-7 flex flex-col gap-1">
           <p className="text-lg font-bold leading-none">{item.user}</p>
-          <p className="break-all leading-[1.2]">{item.text}</p>
+          <p className="break-word leading-[1.2]">{item.text}</p>
           <div className="flex justify-end">
             <p
               className="text-right text-xs text-gray-500"

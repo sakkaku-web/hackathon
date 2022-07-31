@@ -41,7 +41,7 @@ export const handler = async ({ body }: APIGatewayEvent,): Promise<APIGatewayPro
             Item: {
               [ShautColumn.USER_ID]: { S: userId },
               [ShautColumn.DATA_TYPE]: { S: `MESSAGES#${now.toISOString()}` },
-              [ShautColumn.EXPIRES]: { N: `${expires.getTime() / 1000}` },
+              // [ShautColumn.EXPIRES]: { N: `${expires.getTime() / 1000}` },
               [ShautColumn.MESSAGE]: { S: message.text },
               [ShautColumn.FROM_USER]: { S: user.name },
               [ShautColumn.LAT]: { N: `${user.coordinate.lat}` },
