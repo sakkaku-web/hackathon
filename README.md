@@ -1,6 +1,8 @@
 # Shauter
 Shouter is a project where you can meet new people near you. You can post messages in a certain radius and only people who are in the radius can see the message.
 
+A hackathon project for https://codingaustria.at/
+
 ## Future ideas
 - Filter messages through tags e.g. Sports, Arts, Shopping ...
 - Show radius on the map
