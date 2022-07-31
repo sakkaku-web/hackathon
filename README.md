@@ -30,7 +30,7 @@ Demo Url: https://sakkaku-web.github.io/hackathon/
 
 Start frontend with `npm start`
 
-Deploy the backend to aws using `npm run deploy:aws`
+Deploy the backend to aws using `npm run deploy:aws`. You have to be logged in with `aws configure`
 
 To start the backend locally with aws sam. If it's not installed locally run `./testing/start-sam.sh`
 And start the rest api with sam using `sam local start-api`. Note a DynamoDB instance has to be deployed once.
