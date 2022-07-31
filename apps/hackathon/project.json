@@ -35,6 +35,7 @@
           "vendorChunk": true
         },
         "production": {
+          "baseHref": "/hackathon/",
           "fileReplacements": [
             {
               "replace": "apps/hackathon/src/environments/environment.ts",
