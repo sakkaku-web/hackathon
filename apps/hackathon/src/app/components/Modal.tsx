@@ -25,7 +25,7 @@ export function Modal({
   return (
     <div
       className={`fixed inset-0 backdrop-blur-md transition-transform duration-300 ${translate}`}
-      style={{ zIndex: 999999 }}
+      style={{ zIndex: 99999 }}
     >
       <div className="fixed inset-0 -z-10" onClick={() => onClose()}></div>
       <div className="flex flex-row items-center justify-between border-b bg-white p-2">

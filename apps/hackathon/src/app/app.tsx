@@ -57,7 +57,7 @@ export function App() {
         </div>
       ))}
 
-      <ToastContainer transition={Slide} />
+      <ToastContainer transition={Slide} style={{ zIndex: 999999 }} />
       <ShautOut userId={id} onShauted={() => reloadMessages()}></ShautOut>
     </div>
   );
