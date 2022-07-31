@@ -5,10 +5,7 @@ import { Runtime, Code, Function } from '@aws-cdk/aws-lambda';
 import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
 import { CorsHttpMethod, HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import {
-  ShautColumn,
-  SHAUT_TABLE,
-} from '../../../../libs/cloud-shared/src';
+import { ShautColumn, SHAUT_TABLE } from '../../../../libs/cloud-shared/src';
 import { join } from 'path';
 import { RemovalPolicy } from '@aws-cdk/core';
 
@@ -18,7 +15,10 @@ export class AppStack extends cdk.Stack {
 
     const api = new HttpApi(this, 'shautApi', {
       corsPreflight: {
-        allowOrigins: ['*'],
+        allowOrigins: [
+          'http://localhost:4200',
+          'https://sakkaku-web.github.io',
+        ],
         allowHeaders: [
           'Content-Type',
           'X-Amz-Date',
@@ -77,7 +77,7 @@ export class AppStack extends cdk.Stack {
     api.addRoutes({
       path: '/messages/{userId}',
       methods: [HttpMethod.GET],
-      integration: new HttpLambdaIntegration('getMessages', messageFn,),
+      integration: new HttpLambdaIntegration('getMessages', messageFn),
     });
   }
 }
