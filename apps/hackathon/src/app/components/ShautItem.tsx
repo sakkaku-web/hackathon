@@ -1,5 +1,12 @@
 import { ShautMessage } from '@sakkaku-web/core';
-import { format } from 'date-fns';
+import {
+  differenceInHours,
+  differenceInMinutes,
+  format,
+  formatDuration,
+  intervalToDuration,
+} from 'date-fns';
+import { differenceInDays, differenceInSeconds } from 'date-fns/esm';
 import { ReactComponent as DefaultProfilePicture } from '../../assets/person-circle.svg';
 
 interface ShautItemProps {
@@ -7,6 +14,30 @@ interface ShautItemProps {
 }
 
 function ShautItem({ item }: ShautItemProps) {
+  const getTimeAgo = () => {
+    const start = new Date();
+    const end = new Date(item.time);
+
+    const secDiff = differenceInSeconds(start, end);
+    if (secDiff === 0) {
+      return '0 seconds';
+    }
+
+    if (secDiff >= 60) {
+      const minDiff = differenceInMinutes(start, end);
+      if (minDiff >= 60) {
+        const hourDiff = differenceInHours(start, end);
+        if (hourDiff >= 24) {
+          const daysDiff = differenceInDays(start, end);
+          return formatDuration({ days: daysDiff });
+        }
+        return formatDuration({ hours: hourDiff });
+      }
+      return formatDuration({ minutes: minDiff });
+    }
+    return formatDuration({ seconds: secDiff });
+  };
+
   return (
     <div className="border-b border-gray-500 p-2">
       <div className="grid grid-cols-6">
@@ -17,8 +48,11 @@ function ShautItem({ item }: ShautItemProps) {
           <p className="text-lg font-bold leading-none">{item.user}</p>
           <p className="break-all leading-[1.2]">{item.text}</p>
           <div className="flex justify-end">
-            <p className="text-right text-xs text-gray-500">
-              {format(new Date(item.time), 'dd.M.yyyy HH:mm')}
+            <p
+              className="text-right text-xs text-gray-500"
+              title={format(new Date(item.time), 'dd.M.yyyy HH:mm')}
+            >
+              {getTimeAgo() + ' ago'}
             </p>
           </div>
         </div>
