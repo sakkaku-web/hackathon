@@ -100,10 +100,10 @@ function ShoutOut({ userId, onShauted }: ShautOutProps) {
       </Modal>
 
       <button
-        className="fixed bottom-10 right-4 rounded-full bg-orange-400 p-5"
+        className="fixed bottom-10 right-4 rounded-full bg-orange-400 p-5 transition-all duration-200 active:scale-75"
         onClick={() => setShowModal(true)}
       >
-        <Megaphone className="h-5 w-5 fill-white" />
+        <Megaphone className="pointer-events-none h-5 w-5 fill-white" />
       </button>
     </>
   );

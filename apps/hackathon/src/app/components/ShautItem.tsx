@@ -4,7 +4,6 @@ import {
   differenceInMinutes,
   format,
   formatDuration,
-  intervalToDuration,
 } from 'date-fns';
 import { differenceInDays, differenceInSeconds } from 'date-fns/esm';
 import { ReactComponent as DefaultProfilePicture } from '../../assets/person-circle.svg';
